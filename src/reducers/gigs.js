@@ -1,8 +1,10 @@
-const intialState=["five"]
+import {RECEIVE_GIGS} from '../actions/index' 
+
+const intialState=[]
 const gigs = (state = intialState, action) => {
     switch (action.type) {
-      case 'LOAD_GIGS':
-        return action.gigs
+      case RECEIVE_GIGS:
+        return action.payload
       default:
         return state
     }
