@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+    Container,
   Collapse,
   Navbar,
   NavbarToggler,
@@ -28,8 +29,10 @@ export default class Example extends React.Component {
   }
   render() {
     return (
-      <div>
+      
         <Navbar color="success" light expand="md">
+            {/* <div style={{paddingLeft:"20%"}}></div> */}
+            <Container>
           <NavbarBrand href="/">Gig Economy Compare</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
@@ -59,8 +62,10 @@ export default class Example extends React.Component {
               </UncontrolledDropdown> */}
             </Nav>
           </Collapse>
+          </Container>
+                    {/* <div style={{paddingRight:"18%"}}></div> */}
         </Navbar>
-      </div>
+      
     );
   }
 }

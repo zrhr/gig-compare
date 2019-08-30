@@ -18,7 +18,7 @@ export default function InfoCard(props) {
             </ul>
             <hr/>
 
-            <input type="checkbox" data-id={props.item.id}></input> 
+            <input type="checkbox" data-id={props.item.id}/> <span> Add to Compare</span> 
             </CardBody>
             </Card>
         </div>

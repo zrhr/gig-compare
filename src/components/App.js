@@ -15,35 +15,46 @@ function App(props)
     props.receivePosts();
      }, [])
   return (
-    <Container  fluid>
-      <Header></Header>
+    <> 
+    <Header></Header>
+   
+    <Container  >
+     
       <Row>
-      <Col md="1" sm="0" xs="0"></Col>  
-      <Col md="10" sm="12" xs="12">  
+     
+      <Col md="12" sm="12" xs="12">  
         <Row>
          <Explorer path=""/> 
         </Row>
         </Col>
-        <Col md="1" sm="0" xs="0"></Col>
+       
         </Row>
       <Row>
-      <Col md="1" sm="0" xs="0"></Col>  
-      <Col md="10" sm="12" xs="12">  
+      
+      <Col md="12" sm="12" xs="12">  
         <Row>
           
-        <Col md="2" sm="12">
+        <Col md="3" sm="12">
          < Sidebar/>
         </Col>
-        <Col md="10"sm="12"><Row>
+        <Col md="9"sm="12">
+         <Row>
+           <h1>Browse and Compare Gig Economy Apps </h1>
+         </Row>
+         <Row>
+           <Col>{props.gigs.length} results</Col>
+         </Row>
+          <Row>
+
      {props.gigs.length===0 ?"Loading": props.gigs.map(gig=>{ return (<Col  md="4" xs="12" sm="6" ><InfoCard item={gig} key={gig.id}/></Col>) })}
      </Row>
      </Col>
      </Row>
      </Col>
-     <Col md="1" sm="0" xs="0"></Col>
+    
      </Row>
      </Container>
-    
+    </>
   );
 }
 function mapStatetoProps(state,ownProps){

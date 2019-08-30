@@ -4,8 +4,10 @@ export default function Sidebar() {
     return (
         <div>
             <Card>
-                <CardText>Hi</CardText>
+                
+                <input type="text" placeholder="Type to search"></input>
             </Card>
+            <Card>Hello</Card>
         </div>
     )
 }
