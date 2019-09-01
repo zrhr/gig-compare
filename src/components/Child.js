@@ -2,12 +2,14 @@ import React from "react";
 import {connect} from 'react-redux'
 import NoMatch from "./NoMatch";
 import Explorer from "./Explorer"
-function Child({ match,number }) {
-    console.log(match, number)
-    if(match===number.toLowerCase())
+function Child({ match, gigs }) {
+    const names=gigs.map(gig=>gig.name.toLowerCase());
+    const index=names.indexOf(match);
 
+    if(index!==-1)
     return (
      <Explorer path={match}/>
+     
     );
     else return(
         <NoMatch/>
@@ -19,7 +21,9 @@ function mapStateToProps(state, ownProps) {
     
     const object1= {
         "match":match,
-        "number":"fine"
+        "gigs": state.gigs,
+        
+
     }
   
     return object1

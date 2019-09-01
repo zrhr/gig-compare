@@ -10,4 +10,17 @@ export function receivePosts() {
          })
        }
      }
+export const ADD_RATING ='ADD_RATING'
+     export function addRatings(id) {
+        return async (dispatch) => {
+             const response = await fetch(`http://localhost:8080/api/v1/rating/${id}`)
+             const json = await response.text()
+             console.log(json)
+             dispatch({
+               type:ADD_RATING,
+               payload: json,
+               id:id
+             })
+           }
+         }
  

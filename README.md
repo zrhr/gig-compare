@@ -1,68 +1,36 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Who uses it?
+People looking to see what gig economy app to apply to
+What data will it be displaying to the user?
+The different types of gig economy apps and the data about a pay  and scheduling and a rating.
+People can rate the gig app and leave comments on each gigs page.
+What data will the app have to gather from the user?
+The app will gather reviews from the user and ask them to create an account.
+A list of technologies that you plan to use (in addition to React and Spring Boot)
+MySql 
 
-## Available Scripts
+A well-defined and written-out prioritized feature list
+Different pages
+i.	Show all gigs
+ii.	 Comparison Screen
+iii.	Show single gig and their reviews
 
-In the project directory, you can run:
+A list of user stories for every view and any functionality that exists within that view
 
-### `npm start`
+•	As a user, I can see all of the gigs with the name, logo, min money per job, needed tools, ratings and the place jobs are located at in a card. 
+•	I can filter the gigs with a search bar. 
+•	I can filter the gigs with filter bar.
+•	I can filter the gigs
+•	Header with left side logo right side user log/in
+•	Footer with 
+•	As a user, I can add a gig to the comparison tool by clicking the "compare" button.
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Single Gig View
+•	As a user, when I click one of gigs in the list, I am taken to a page that shows me the full details about that gig and reviews.
+•	As a user, when I click the add a comment button, it takes me to a form that allows me to add a reviews to the list.
+•	As a user, I am able to remove my review from this list by clicking the delete button next to the comment.
+Comparison View
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+•	As a user, I can see the gig logo and summary
+•	As a user, I see a table with the two gigs lined up with comparative stats
+•	I can add two gigs to the comparison tool.
+•	Where to apply
