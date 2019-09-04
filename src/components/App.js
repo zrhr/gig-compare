@@ -1,13 +1,13 @@
 import React from 'react';
 import {useEffect,useState} from 'react';
-import { receivePosts, addRatings } from '../actions';
+import { receivePosts, addRatings } from '../actions/gigs.js';
 import { connect } from 'react-redux';
 import InfoCard from './InfoCard'
 import Header from './Header'
 import Sidebar from'./Sidebar'
 import Explorer from './Explorer'
 
-import { Container, Row, Col,Button } from 'reactstrap';
+import { Container, Row, Col, Spinner } from 'reactstrap';
 function App({gigs,receivePosts, addRatings,ownProps}) 
 {
   const [loaded,setLoaded]=useState(false)
@@ -74,7 +74,7 @@ function App({gigs,receivePosts, addRatings,ownProps})
 
           <Row>
 
-     {!update  ?"Loading": gigs.map(gig=>{ return (<Col  md="4" xs="12" sm="6" ><InfoCard item={gig} key={gig.id}/></Col>) })}
+     {!update  ?<Spinner style={{ width: '3rem', height: '3rem' }} type="grow" />: gigs.map(gig=>{ return (<Col  md="4" xs="12" sm="6" ><InfoCard item={gig} key={gig.id}/></Col>) })}
      </Row>
      </Col>
      </Row>

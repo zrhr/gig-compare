@@ -1,4 +1,4 @@
-import {RECEIVE_GIGS,ADD_RATING} from '../actions/index' 
+import {RECEIVE_GIGS,ADD_RATING} from '../actions/gigs' 
 
 const intialState=[]
 const gigs = (state = intialState, action) => {

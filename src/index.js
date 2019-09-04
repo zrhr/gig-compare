@@ -6,8 +6,11 @@ import thunk from 'redux-thunk'
 import logger from 'redux-logger'
 import Root from './components/Root';
 import rootReducer from './reducers';
-import 'bootstrap/dist/css/bootstrap.min.css';
-const store = createStore(rootReducer,
+import '@fortawesome/fontawesome-free/css/all.min.css';
+import 'bootstrap-css-only/css/bootstrap.min.css';
+import 'mdbreact/dist/css/mdb.css';
+
+const store = createStore(rootReducer,{},
     composeWithDevTools(
         applyMiddleware(thunk,logger)
     )

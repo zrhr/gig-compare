@@ -1,18 +1,53 @@
-import React from "react";
+import React, {useState,useEffect} from "react";
 import {connect} from 'react-redux'
 import NoMatch from "./NoMatch";
-import Explorer from "./Explorer"
-function Child({ match, gigs }) {
+import Explorer from "./Explorer";
+import Header from "./Header";
+import Single from "./Single";
+import {addRatings} from '../actions/gigs'
+ import {receivePosts} from '../actions/gigs'
+ import { Table,Card, CardImg, CardText, CardBody,
+  CardTitle, CardSubtitle, Button,Container, Row, Col } from 'reactstrap';
+function Child({ match, gigs,addRatings,receivePosts }) {
+  const [loaded,setLoaded]=useState(false)
+  const [update,setUpdate]=useState(false)
+  useEffect(() => {
+
+    receivePosts();
+    return setLoaded(true);
+     }, [])
+
+    useEffect(()=>{
+      
+    
+      if(loaded){
+        console.log("hello")
+   gigs.map(x=>addRatings(x.id));
+     setLoaded(false) 
+    setUpdate(true)
+     }
+    },[gigs]);
     const names=gigs.map(gig=>gig.name.toLowerCase());
     const index=names.indexOf(match);
-
-    if(index!==-1)
+    if(!update)
+    return(
+      <div>Loading</div>
+    )
+    else if(index!==-1)
     return (
+      <>
+      <Header></Header>
+      <Container>
      <Explorer path={match}/>
-     
+      <Single item={gigs[index]}/>
+      
+      </Container>
+      </>
     );
-    else return(
+    else return(<>
+      <Header></Header>
         <NoMatch/>
+        </>
     )
 }
 function mapStateToProps(state, ownProps) {
@@ -29,6 +64,11 @@ function mapStateToProps(state, ownProps) {
     return object1
    
   }
-  
+  function mapDispatchToProps (dispatch){
+    return {
+      addRatings:(id)=>dispatch(addRatings(id)),
+      receivePosts:()=>dispatch(receivePosts())
+    }
+    }
     
-    export default connect(mapStateToProps)( Child);
+    export default connect(mapStateToProps, mapDispatchToProps )( Child);
