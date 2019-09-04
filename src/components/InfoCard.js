@@ -20,9 +20,10 @@ import { Card, CardImg, CardText, CardBody,
                 <li>{props.item.traded} Company</li>
             </ul>
             <hr/>
-
-            <input type="checkbox" data-id={props.item.id}/> <span> Add to Compare</span> 
-            </CardBody>
+            <label>
+            <input type="checkbox" data-id={props.item.id} onChange={()=>props.addToCompareHandler(props.item.id)}/> <span> Add to Compare</span> 
+            </label>
+             </CardBody>
             </Card>
         </div>
     )

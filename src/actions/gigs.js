@@ -23,3 +23,12 @@ export const ADD_RATING ='ADD_RATING'
              })
            }
          }
+export const ADD_COMPARE='ADD_COMPARE'
+         export function addToCompare(id){
+           return (dispatch)=>{
+             dispatch({
+               type: ADD_COMPARE,
+               id:id
+             })
+           }
+         }

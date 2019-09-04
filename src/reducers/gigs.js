@@ -1,4 +1,4 @@
-import {RECEIVE_GIGS,ADD_RATING} from '../actions/gigs' 
+import {RECEIVE_GIGS,ADD_RATING, ADD_COMPARE} from '../actions/gigs' 
 
 const intialState=[]
 const gigs = (state = intialState, action) => {
@@ -8,13 +8,19 @@ const gigs = (state = intialState, action) => {
         case ADD_RATING:
             return state.map(gig=>
                         {
-                        if(gig.id===action.id && action.rating!=null)
-                            return{...gig, "rating":action.rating, "compare": false}
+                        if(gig.id===action.id && action.payload!=null)
+                            return{...gig, "rating":action.payload, "compare": false}
                         else
-                            return{...gig, "rating": "5", "compare":false}
+                            return{...gig, "compare":false}
                         })           
                     
-
+        case ADD_COMPARE:
+            return state.map(gig=>{
+                if(gig.id===action.id )
+                            return{...gig,  "compare": !gig.compare}
+                        else
+                            return{...gig}
+            })
             
     
         default:
