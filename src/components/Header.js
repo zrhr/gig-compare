@@ -1,31 +1,29 @@
-import React, { Component } from "react";
+import React, { Component,useState } from "react";
 import { MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNavbarToggler, MDBCollapse, MDBDropdown,
 MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBIcon,Container } from "mdbreact";
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router, Link, withRouter } from 'react-router-dom';
 
-class Header extends Component {
-state = {
-  isOpen: false
-};
+function Header (props) {
+const [isOpen,setState]=useState(false)
 
-toggleCollapse = () => {
-  this.setState({ isOpen: !this.state.isOpen });
+const toggleCollapse = () => {
+  setState( !isOpen );
 }
 
-render() {
+
   return (
     <Router>
       <MDBNavbar color="default-color" dark expand="md">
         <Container>
-        <MDBNavbarBrand>
-          <strong className="white-text">Gig Economy Compare</strong>
+         <MDBNavbarBrand >
+         <strong className="white-text">Gig Economy Compare</strong>
         </MDBNavbarBrand>
-        <MDBNavbarToggler onClick={this.toggleCollapse} />
-        <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
+        <MDBNavbarToggler onClick={()=>toggleCollapse()} />
+        <MDBCollapse id="navbarCollapse3" isOpen={isOpen} navbar>
           <MDBNavbarNav left>
-            <MDBNavItem active>
+            {/* <MDBNavItem active>
               <MDBNavLink to="/">Home</MDBNavLink>
-            </MDBNavItem>
+            </MDBNavItem> */}
 {/*             
             <MDBNavItem>
               <MDBDropdown>
@@ -58,10 +56,10 @@ render() {
                   <MDBIcon icon="user" />
                 </MDBDropdownToggle>
                 <MDBDropdownMenu className="dropdown-default">
-                  <MDBDropdownItem href="#!">Action</MDBDropdownItem>
-                  <MDBDropdownItem href="#!">Another Action</MDBDropdownItem>
-                  <MDBDropdownItem href="#!">Something else here</MDBDropdownItem>
-                  <MDBDropdownItem href="#!">Something else here</MDBDropdownItem>
+                  <MDBDropdownItem ><Link to="/login">Login</Link>
+                  </MDBDropdownItem>
+                  <MDBDropdownItem ><Link to ="/register" >Register</Link></MDBDropdownItem>
+                  
                 </MDBDropdownMenu>
               </MDBDropdown>
             </MDBNavItem>
@@ -72,6 +70,6 @@ render() {
     </Router>
     );
   }
-}
 
-export default Header;
+
+export default Header

@@ -6,6 +6,7 @@ import InfoCard from './InfoCard'
 import Header from './Header'
 import Sidebar from'./Sidebar'
 import Explorer from './Explorer'
+import { BrowserRouter as Router, Route, Link, withRouter } from "react-router-dom";
 
 import { Container, Row, Col, Spinner } from 'reactstrap';
 import ModalPage from './ModalPage.js';
@@ -14,6 +15,7 @@ function App({gigs,receivePosts, addRatings,ownProps,addToCompare})
   const [loaded,setLoaded]=useState(false)
   const [update,setUpdate]=useState(false)
   const [modalShow,setModalShow]=useState(false)
+  const [searchTerm,setSearchTerm]=useState("")
   useEffect(() => {
     console.log(ownProps)
     receivePosts();
@@ -117,4 +119,4 @@ return {
   receivePosts:()=>dispatch(receivePosts())
 }
 }
-export default connect(mapStatetoProps,mapDispatchToProps)( App);
+export default withRouter(connect(mapStatetoProps,mapDispatchToProps)( App));
