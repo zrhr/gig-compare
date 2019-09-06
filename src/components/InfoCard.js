@@ -13,7 +13,7 @@ export default function InfoCard(props) {
 
     return (
         <div >
-            <Card>
+            <Card style={{marginTop:"1em"}}>
                 <Link
                     to={`/${props
                     .item

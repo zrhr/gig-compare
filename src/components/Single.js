@@ -1,17 +1,18 @@
 import React,{useState,useEffect} from 'react'
 import { MDBIcon,MDBCard, MDBCardText, MDBCardImage, MDBInput,
     MDBBtn,Container, MDBRow, MDBCol, MDBCardTitle } from 'mdbreact';
-    import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+    import {withRouter  } from "react-router";
     import Moment from 'react-moment'
 
 import CompTable from './CompTable'
-import { receiveReviews , createComment} from '../actions/reviews';
+import { receiveReviews , createComment, deleteReview} from '../actions/reviews';
 import { connect } from 'react-redux';
 import { create } from 'jss';
  function Single(props) {
     const [loaded,setLoaded]=useState(false)
     const [textArea,setTextArea]=useState("");
     const [userRating, setUserRating] = useState(5)
+    const [edit, setEdit] = useState([])
   useEffect(() => {
     console.log(props.ownProps.item.id)
    props.receiveReviews(props.ownProps.item.id)
@@ -23,10 +24,15 @@ const handleTextArea=(e)=>{
 const handleSelect=(e)=>{
     setUserRating(e.target.value)
 }
+const handleEdit=(id)=>{
+    
+   
+console.log(edit)
+}
 const handleSubmit=(e)=>{
     e.preventDefault();
     setTextArea("");
-    props.createComment({"jobId":props.ownProps.item.id, "userId":1, "comment":textArea, "rating":userRating})
+    props.createComment({"jobId":props.ownProps.item.id, "userId":1, "comment":textArea, "rating":userRating, "jobName":props.ownProps.item.name})
 }
      const calendarStrings = {
         lastDay : '[Yesterday at] LT',
@@ -113,9 +119,9 @@ const handleSubmit=(e)=>{
         <span class="sr-only">Loading...</span>
       </div>
     </>: 
-     props.reviews.map(x=>{const num=x.rating; const ratingArray= Array(num).fill(1);
+     props.reviews.map(x=>{ const num=x.rating; const ratingArray= Array(num).fill(1);
         
-         return (
+         return (<div>
       <MDBCard width="100%" testimonial>
           <MDBCardTitle>
               <Moment fromNow={true} calendar={calendarStrings} date={x.createDateTime}/>
@@ -128,7 +134,30 @@ const handleSubmit=(e)=>{
                   
                   
                 </div>
-    </MDBCard>)}) }        <MDBCard>
+                
+    </MDBCard><MDBBtn onClick={()=>props.deleteReview(x.id)} size="sm">Delete</MDBBtn>
+                <MDBBtn onClick={()=>handleEdit(x.id)} size="sm">Edit</MDBBtn>{x.mod?<form onSubmit={(e)=>{handleSubmit(e)}}>
+        <MDBInput onChange={(e)=>handleTextArea(e)}
+          type="textarea"
+          label="Review"
+          rows="2"
+          icon="pencil-alt"
+          value={textArea}
+        />
+        <div>
+        <select className="browser-default custom-select" onChange={(e)=>handleSelect(e)}>
+          <option>Review Rating</option>
+          <option value="1">1 Stars</option>
+          <option value="2">2 Stars</option>
+          <option value="3">3 Stars</option>
+          <option value="4">4 Stars</option>
+          <option value="5">5 Stars</option>
+        </select>
+      </div><MDBBtn className="btn btn-outline-blue" type="submit" >
+                    Edit Comment
+                    <MDBIcon far icon="paper-plane" className="ml-2" />
+                  </MDBBtn>
+                </form>:null}</div>)}) }        <MDBCard>
                       
                     </MDBCard>
                 </MDBCol>
@@ -146,7 +175,8 @@ function mapStatetoProps(state,ownProps){
   function mapDispatchtoProps (dispatch){
   return {
     createComment:id=>dispatch(createComment(id)),
-    receiveReviews:id=>dispatch(receiveReviews(id))
+    receiveReviews:id=>dispatch(receiveReviews(id)),
+    deleteReview:id=>dispatch(deleteReview(id))
   }
   }
-export default connect(mapStatetoProps, mapDispatchtoProps) (Single);
+export default withRouter(connect(mapStatetoProps, mapDispatchtoProps)(Single));
