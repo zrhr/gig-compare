@@ -62,3 +62,41 @@ export function receiveAllReviews() {
          })
          }
      }
+
+     export const OPEN_REVIEW = 'OPEN_REVIEW'
+     export function openReview(userId){
+       
+        
+         return  dispatch =>{
+             
+         console.log("deleted")
+         dispatch({
+             type: OPEN_REVIEW,
+             payload:userId
+             
+         })
+         }
+     }    
+     export const REVIEW_EDITED = 'REVIEW_EDITED'
+     export function   editReview({userId,comment,rating,jobName,jobId}){
+       
+        
+         return async (dispatch) =>{
+             const response = await fetch(`http://localhost:8080/api/v1/reviews/${jobId}`, {
+                 method: "PATCH",
+                 body:JSON.stringify({"comment":comment, "rating":rating
+                 }),
+                 headers:{
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                 }
+             })
+         const createdComment = await response.json()
+         dispatch({
+             type: REVIEW_EDITED,
+             payload:{ ...createdComment},
+             id: jobId
+             
+         })
+         }
+     }

@@ -31,7 +31,7 @@ class ModalPage extends React.Component {
                         frame
                         position="bottom">
                         <MDBModalBody className="text-center">
-                            To compare blank and blank hit the button below!
+                            To compare hit the button to the far right!
                             <MDBBtn color="secondary" onClick={this.cancel}>Cancel</MDBBtn>
                             <MDBBtn color="primary" onClick={this.compare}>Compare</MDBBtn>
                         </MDBModalBody>

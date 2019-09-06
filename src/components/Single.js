@@ -5,14 +5,16 @@ import { MDBIcon,MDBCard, MDBCardText, MDBCardImage, MDBInput,
     import Moment from 'react-moment'
 
 import CompTable from './CompTable'
-import { receiveReviews , createComment, deleteReview} from '../actions/reviews';
+import { receiveReviews , createComment, deleteReview, openReview, editReview} from '../actions/reviews';
 import { connect } from 'react-redux';
 import { create } from 'jss';
  function Single(props) {
     const [loaded,setLoaded]=useState(false)
     const [textArea,setTextArea]=useState("");
     const [userRating, setUserRating] = useState(5)
-    const [edit, setEdit] = useState([])
+    const [edit, setEdit] = useState("")
+    const [editUserRating, setEditUserRating]=useState(5)
+    const [editId,setEditId]=useState("")
   useEffect(() => {
     console.log(props.ownProps.item.id)
    props.receiveReviews(props.ownProps.item.id)
@@ -21,19 +23,40 @@ import { create } from 'jss';
 const handleTextArea=(e)=>{
     setTextArea(e.target.value)
 }
+const handleTextAreaEdit=(e)=>{
+    setEdit(e.target.value)
+}
 const handleSelect=(e)=>{
     setUserRating(e.target.value)
 }
+const handleSelectEdit=(e)=>{
+    setEditUserRating(e.target.value)
+}
 const handleEdit=(id)=>{
-    
-   
-console.log(edit)
+    props.openReview(id);
+    let index=0;
+    for(let i=0;i<props.reviews.length; i++)
+    {
+        if(props.reviews[i].id===id)
+        {
+            index=i;
+            setEditId(props.reviews[i].id)
+        }
+    }
+   setEdit(props.reviews[index].comment)
+
 }
 const handleSubmit=(e)=>{
     e.preventDefault();
     setTextArea("");
     props.createComment({"jobId":props.ownProps.item.id, "userId":1, "comment":textArea, "rating":userRating, "jobName":props.ownProps.item.name})
+    setTextArea("");
 }
+const handleSubmitEdit=(e)=>{
+    e.preventDefault();
+    setTextArea("");
+    props.editComment({"jobId":editId, "userId":1, "comment":edit, "rating":editUserRating, "jobName":props.ownProps.item.name})
+    setTextArea("");}
      const calendarStrings = {
         lastDay : '[Yesterday at] LT',
         sameDay : '[Today at] LT',
@@ -115,7 +138,7 @@ const handleSubmit=(e)=>{
             </MDBCol>
         </MDBRow>
         {!loaded ?<>
-      <div class="spinner-border" role="status">
+      <div className="spinner-border" role="status">
         <span class="sr-only">Loading...</span>
       </div>
     </>: 
@@ -136,16 +159,16 @@ const handleSubmit=(e)=>{
                 </div>
                 
     </MDBCard><MDBBtn onClick={()=>props.deleteReview(x.id)} size="sm">Delete</MDBBtn>
-                <MDBBtn onClick={()=>handleEdit(x.id)} size="sm">Edit</MDBBtn>{x.mod?<form onSubmit={(e)=>{handleSubmit(e)}}>
-        <MDBInput onChange={(e)=>handleTextArea(e)}
+                <MDBBtn onClick={()=>handleEdit(x.id)} size="sm">Edit</MDBBtn>{x.mod?<form onSubmit={(e)=>{handleSubmitEdit(e)}}>
+        <MDBInput onChange={(e)=>handleTextAreaEdit(e)}
           type="textarea"
           label="Review"
           rows="2"
           icon="pencil-alt"
-          value={textArea}
+          value={edit}
         />
         <div>
-        <select className="browser-default custom-select" onChange={(e)=>handleSelect(e)}>
+        <select className="browser-default custom-select" onChange={(e)=>handleSelectEdit(e)}>
           <option>Review Rating</option>
           <option value="1">1 Stars</option>
           <option value="2">2 Stars</option>
@@ -176,7 +199,9 @@ function mapStatetoProps(state,ownProps){
   return {
     createComment:id=>dispatch(createComment(id)),
     receiveReviews:id=>dispatch(receiveReviews(id)),
-    deleteReview:id=>dispatch(deleteReview(id))
+    deleteReview:id=>dispatch(deleteReview(id)),
+    openReview: id=>dispatch(openReview(id)),
+    editComment:id=>dispatch(editReview(id))
   }
   }
 export default withRouter(connect(mapStatetoProps, mapDispatchtoProps)(Single));

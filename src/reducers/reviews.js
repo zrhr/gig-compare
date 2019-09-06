@@ -1,4 +1,4 @@
-import {RECEIVE_REVIEWS,COMMENT_CREATED,ALL_REVIEWS, DELETE_REVIEW} from '../actions/reviews'
+import {RECEIVE_REVIEWS,COMMENT_CREATED,ALL_REVIEWS, DELETE_REVIEW, OPEN_REVIEW, REVIEW_EDITED} from '../actions/reviews'
 const intialState=[]
 const reviews = (state = intialState, action) => {
     switch (action.type) {
@@ -10,7 +10,18 @@ const reviews = (state = intialState, action) => {
             return state.concat(action.payload)
         case DELETE_REVIEW:
             return state.filter(r=>r.id!==action.payload)   
-    
+        case OPEN_REVIEW:
+            return state.map(review=>{
+                 if(action.payload===review.id)
+                    return {...review, mod:!review.mod}
+                else
+                        return review })    
+        case REVIEW_EDITED:
+            return state.map(review=>{
+                if(action.id===review.id)
+                   return action.payload
+               else
+                       return review })
         default:
             return state
     }
