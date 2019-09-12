@@ -1,12 +1,19 @@
+![Screenshot](public/gigcompare.png)
 Who uses it?
+
 People looking to see what gig economy app to apply to
 What data will it be displaying to the user?
+
 The different types of gig economy apps and the data about a pay  and scheduling and a rating.
+
 People can rate the gig app and leave comments on each gigs page.
 What data will the app have to gather from the user?
+
 The app will gather reviews from the user and ask them to create an account.
+
 A list of technologies that you plan to use (in addition to React and Spring Boot)
-MySql 
+
+PostgreSql 
 
 A well-defined and written-out prioritized feature list
 Different pages
