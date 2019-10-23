@@ -1,7 +1,7 @@
 export const RECEIVE_REVIEWS = 'RECEIVE_REVIEWS'
 export function receiveReviews(id) {
     return async dispatch => {
-         const response = await fetch(`http://localhost:8080/api/v1/reviews/job/${id}`)
+         const response = await fetch(`https://gig-compare-backend.herokuapp.com/api/v1/reviews/job/${id}`)
          const json = await response.json()
          console.log(json)
          dispatch({
@@ -15,7 +15,7 @@ export function receiveReviews(id) {
        
         
          return async (dispatch) =>{
-             const response = await fetch(`http://localhost:8080/api/v1/reviews/${userId}/${jobId}`, {
+             const response = await fetch(`https://gig-compare-backend.herokuapp.com/api/v1/reviews/${userId}/${jobId}`, {
                  method: "POST",
                  body:JSON.stringify({"comment":comment, "rating":rating, "jobName":jobName
                  }),
@@ -35,7 +35,7 @@ export function receiveReviews(id) {
 export const ALL_REVIEWS = 'ALL_REVIEWS'
 export function receiveAllReviews() {
     return async dispatch => {
-         const response = await fetch(`http://localhost:8080/api/v1/reviews`)
+         const response = await fetch(`https://gig-compare-backend.herokuapp.com/api/v1/reviews`)
          const json = await response.json()
          console.log(json)
          dispatch({
@@ -50,7 +50,7 @@ export function receiveAllReviews() {
        
         
          return async (dispatch) =>{
-             const response = await fetch(`http://localhost:8080/api/v1/reviews/${userId}`, {
+             const response = await fetch(`https://gig-compare-backend.herokuapp.com/api/v1/reviews/${userId}`, {
                  method: "DELETE"
              })
          if(response.ok)
@@ -82,7 +82,7 @@ export function receiveAllReviews() {
        
         
          return async (dispatch) =>{
-             const response = await fetch(`http://localhost:8080/api/v1/reviews/${jobId}`, {
+             const response = await fetch(`https://gig-compare-backend.herokuapp.com/api/v1/reviews/${jobId}`, {
                  method: "PATCH",
                  body:JSON.stringify({"comment":comment, "rating":rating
                  }),

@@ -1,7 +1,7 @@
 export const RECEIVE_GIGS = 'RECEIVE_GIGS'
 export function receivePosts() {
     return async (dispatch) => {
-         const response = await fetch(`http://localhost:8080/api/v1/gigs`)
+         const response = await fetch(`https://gig-compare-backend.herokuapp.com/api/v1/gigs`)
          const json = await response.json()
          console.log(json)
          dispatch({
@@ -13,7 +13,7 @@ export function receivePosts() {
 export const ADD_RATING ='ADD_RATING'
      export function addRatings(id) {
         return async (dispatch) => {
-             const response = await fetch(`http://localhost:8080/api/v1/rating/${id}`)
+             const response = await fetch(`https://gig-compare-backend.herokuapp.com/api/v1/rating/${id}`)
              const json = await response.text()
              console.log(json)
              dispatch({
